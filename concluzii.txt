@@ -1,0 +1,53 @@
+n = 1000000
+m = 100000000
+Bubble sort: 120029ms
+Sortarea a fost oprita dupa 2 minute.
+Counting sort: 604ms
+Vectorul a fost sortat corect.
+Radix sort: 191ms
+Vectorul a fost sortat corect.
+
+n = 1000000
+m = 100
+Bubble sort: 120035ms
+Sortarea a fost oprita dupa 2 minute.
+Counting sort: 16ms
+Vectorul a fost sortat corect.
+Radix sort: 104ms
+Vectorul a fost sortat corect.
+
+n = 1000
+m = 100000000
+Bubble sort: 32ms
+Vectorul a fost sortat corect.
+Counting sort: 654ms
+Vectorul a fost sortat corect.
+Radix sort: 0ms
+Vectorul a fost sortat corect.
+
+n = 100
+m = 100000000
+Bubble sort: 0ms
+Vectorul a fost sortat corect.
+Counting sort: 641ms
+Vectorul a fost sortat corect.
+Radix sort: 0ms
+Vectorul a fost sortat corect.
+
+n = 1000
+m = 1000
+Bubble sort: 60ms
+Vectorul a fost sortat corect.
+Counting sort: 0ms
+Vectorul a fost sortat corect.
+Radix sort: 0ms
+Vectorul a fost sortat corect.
+
+n = 100000
+m = 1000
+Bubble sort: 120003ms
+Sortarea a fost oprita dupa 2 minute.
+Counting sort: 0ms
+Vectorul a fost sortat corect.
+Radix sort: 12ms
+Vectorul a fost sortat corect.
