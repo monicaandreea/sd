@@ -1,53 +1,127 @@
-n = 1000000
-m = 100000000
-Bubble sort: 120029ms
-Sortarea a fost oprita dupa 2 minute.
-Counting sort: 604ms
-Vectorul a fost sortat corect.
-Radix sort: 191ms
-Vectorul a fost sortat corect.
-
-n = 1000000
-m = 100
-Bubble sort: 120035ms
-Sortarea a fost oprita dupa 2 minute.
-Counting sort: 16ms
-Vectorul a fost sortat corect.
-Radix sort: 104ms
-Vectorul a fost sortat corect.
-
-n = 1000
-m = 100000000
-Bubble sort: 32ms
-Vectorul a fost sortat corect.
-Counting sort: 654ms
-Vectorul a fost sortat corect.
-Radix sort: 0ms
-Vectorul a fost sortat corect.
-
 n = 100
-m = 100000000
-Bubble sort: 0ms
-Vectorul a fost sortat corect.
-Counting sort: 641ms
-Vectorul a fost sortat corect.
-Radix sort: 0ms
-Vectorul a fost sortat corect.
-
-n = 1000
-m = 1000
-Bubble sort: 60ms
-Vectorul a fost sortat corect.
+m = 100000
+Sortarea din c++: 0ms
 Counting sort: 0ms
 Vectorul a fost sortat corect.
 Radix sort: 0ms
+Vectorul a fost sortat corect.
+Merge sort: 0ms
+Vectorul a fost sortat corect.
+Quick sort cu pivot pe ultimul element: 0ms
+Vectorul a fost sortat corect.
+Quick sort cu pivot din mediana de 3: 0ms
+Vectorul a fost sortat corect.
+Bubble sort: 0ms
 Vectorul a fost sortat corect.
 
 n = 100000
-m = 1000
-Bubble sort: 120003ms
-Sortarea a fost oprita dupa 2 minute.
+m = 100000
+Sortarea din c++: 22ms
+Counting sort: 1ms
+Vectorul a fost sortat corect.
+Radix sort: 15ms
+Vectorul a fost sortat corect.
+Merge sort: 18ms
+Vectorul a fost sortat corect.
+Quick sort cu pivot pe ultimul element: 18ms
+Vectorul a fost sortat corect.
+Quick sort cu pivot din mediana de 3: 20ms
+Vectorul a fost sortat corect.
+Bubble sort: 60003ms
+Sortarea a fost oprita dupa 1 minut.
+
+n = 100000
+m = 100000
+Sortarea din c++: 23ms
+Counting sort: 1ms
+Vectorul a fost sortat corect.
+Radix sort: 15ms
+Vectorul a fost sortat corect.
+Merge sort: 18ms
+Vectorul a fost sortat corect.
+Quick sort cu pivot pe ultimul element: 19ms
+Vectorul a fost sortat corect.
+Quick sort cu pivot din mediana de 3: 22ms
+Vectorul a fost sortat corect.
+Bubble sort: 60004ms
+Sortarea a fost oprita dupa 1 minut.
+
+n = 1000
+m = 10000000
+Sortarea din c++: 0ms
+Counting sort: 43ms
+Vectorul a fost sortat corect.
+Radix sort: 0ms
+Vectorul a fost sortat corect.
+Merge sort: 0ms
+Vectorul a fost sortat corect.
+Quick sort cu pivot pe ultimul element: 0ms
+Vectorul a fost sortat corect.
+Quick sort cu pivot din mediana de 3: 0ms
+Vectorul a fost sortat corect.
+Bubble sort: 17ms
+Vectorul a fost sortat corect.
+
+n = 10000000
+m = 10000
+Sortarea din c++: 2792ms
+Counting sort: 111ms
+Vectorul a fost sortat corect.
+Radix sort: 1224ms
+Vectorul a fost sortat corect.
+Merge sort: 
+prea multe numere, risc de stack overflow
+Quick sort cu pivot pe ultimul element: 11805ms
+Vectorul a fost sortat corect.
+Quick sort cu pivot din mediana de 3: 12108ms
+Vectorul a fost sortat corect.
+Bubble sort: 60334ms
+Sortarea a fost oprita dupa 1 minut.
+
+n = 100000
+m = 100
+Sortarea din c++: 24ms
 Counting sort: 0ms
 Vectorul a fost sortat corect.
-Radix sort: 12ms
+Radix sort: 8ms
 Vectorul a fost sortat corect.
+Merge sort: 24ms
+Vectorul a fost sortat corect.
+Quick sort cu pivot pe ultimul element: 146ms
+Vectorul a fost sortat corect.
+Quick sort cu pivot din mediana de 3: 146ms
+Vectorul a fost sortat corect.
+Bubble sort: 60003ms
+Sortarea a fost oprita dupa 1 minut.
+
+n = 1000
+m = 100000
+Sortarea din c++: 0ms
+Counting sort: 0ms
+Vectorul a fost sortat corect.
+Radix sort: 4ms
+Vectorul a fost sortat corect.
+Merge sort: 0ms
+Vectorul a fost sortat corect.
+Quick sort cu pivot pe ultimul element: 0ms
+Vectorul a fost sortat corect.
+Quick sort cu pivot din mediana de 3: 0ms
+Vectorul a fost sortat corect.
+Bubble sort: 19ms
+Vectorul a fost sortat corect.
+
+n = 100000
+m = 100000
+Sortarea din c++: 52ms
+Counting sort: 3ms
+Vectorul a fost sortat corect.
+Radix sort: 37ms
+Vectorul a fost sortat corect.
+Merge sort: 39ms
+Vectorul a fost sortat corect.
+Quick sort cu pivot pe ultimul element: 48ms
+Vectorul a fost sortat corect.
+Quick sort cu pivot din mediana de 3: 40ms
+Vectorul a fost sortat corect.
+Bubble sort: 60002ms
+Sortarea a fost oprita dupa 1 minut.
