@@ -2,7 +2,11 @@
 #include<vector>
 #include<chrono>
 #include<algorithm>
+#include<fstream>
 using namespace std;
+
+ifstream f("date.in");
+ofstream g("date.out");
 
 //generating numbers
 vector<int> teste( int &n, int &m)
@@ -12,11 +16,41 @@ vector<int> teste( int &n, int &m)
     srand( time(0));
 
     //n = rand() % 10000000 + 1; // genereaza numarul de numere
-    n=100000;
-    m=1000;
+    //n=10000;
+    //m=1000000;
     for( i=0 ; i<n ; i++)
-        v.push_back( rand() %1000 ); //genereaza numere mai mici ca 10^4
+        v.push_back( rand() %m ); //genereaza numere mai mici ca 10^4
 
+    return v;
+}
+
+vector<int> teste_descrescator( int &n, int &m)
+{
+    int i;
+    vector<int> v;
+    srand( time(0));
+
+    //n = rand() % 10000000 + 1; // genereaza numarul de numere
+    //n=10000;
+    //m=1000000;
+    for( i=0 ; i<n ; i++)
+        v.push_back( rand() %m ); //genereaza numere mai mici ca 10^4
+    sort(v.begin(), v.end(), greater<int>());
+    return v;
+}
+
+vector<int> teste_crescator( int &n, int &m)
+{
+    int i;
+    vector<int> v;
+    srand( time(0));
+
+    //n = rand() % 10000000 + 1; // genereaza numarul de numere
+    //n=10000;
+    //m=1000000;
+    for( i=0 ; i<n ; i++)
+        v.push_back( rand() %m ); //genereaza numere mai mici ca 10^4
+    sort(v.begin(), v.end());
     return v;
 }
 
@@ -31,7 +65,7 @@ vector<int> BubbleSort(vector<int> v, int n)
         {
             auto timp = chrono::high_resolution_clock::now();
             auto durata = chrono::duration_cast<chrono::microseconds>(timp - start);
-            if( durata.count() / 1000 > 120000){intrerupt = 1; break;}
+            if( durata.count() / 1000 > 60000){intrerupt = 1; break;}
             if( v[j] > v[j+1] )
                 swap(v[j], v[j+1]);
         }
@@ -112,67 +146,232 @@ vector<int> RadixSort(vector<int> v, int n)
     return v;
 }
 
+//Merge sort
+//divide et impera + interclasare intre left si right
+
+void combining(vector<int> &v, int l, int m, int r)
+{
+    int i;
+    int n_left = m-l+1; //lung jumatatii din staga/dreapta
+    int n_right = r-m;
+
+    int left[n_left], right[n_right];
+
+    for( i=0 ; i<n_left ; i++) //copiem jumatatiile in vectorii respectivi
+        left[i] = v[l+i];
+    for( i=0 ; i<n_right ; i++)
+        right[i] = v[m+1+i];
+
+    i = 0; //indice matrice left
+    int j = 0; //indice matrice right
+    int k = l; //indice matrice v (incepe de la l)
+
+    while( i<n_left && j<n_right ) //interclasare
+    {
+        if( left[i] <= right[j] ) {v[k] = left[i]; i++;}
+        else {v[k] = right[j]; j++;}
+        k++;
+    }
+
+    while( i<n_left ) v[k] = left[i], i++, k++;
+    while( j<n_right ) v[k] = right[j], j++, k++;
+
+}
+
+void MergeSort(vector<int> &v, int l, int r)
+{
+    if(l>=r) return;
+    int m = l+(r-l)/2;
+    MergeSort(v, l, m);
+    MergeSort(v, m+1, r);
+    combining(v, l, m, r);
+}
+
+//Quick sort
+// divide et impera cu pivot pe ultimul element
+
+int partitie(vector<int> &v, int l, int r)
+{
+    int pivot = v[r]; //ultimul element
+    int i, poz = l - 1;
+
+    for (i = l; i <= r; i++)
+        if (v[i] < pivot) {
+            poz++;
+            swap(v[i], v[poz]);
+        }
+
+    swap(v[poz + 1], v[r]);
+    return poz + 1;
+}
+
+void QuickSort_pivot_ultimul(vector<int> &v, int l, int r)
+{
+    if(l<r)
+    {
+        int p = partitie(v, l, r);
+        QuickSort_pivot_ultimul(v, l, p-1);
+        QuickSort_pivot_ultimul(v, p+1, r);
+    }
+}
+
+//Quick sort
+// divide et impera cu pivot din mediana de 3
+
+void mediana(vector<int> &v, int l, int r)
+{
+    int pivot, mid = (l+r)/2;
+    if((v[l]<= v[mid] && v[mid] <= v[r]) || (v[r]<= v[mid] && v[mid] <= v[l]))
+        pivot = mid;
+    if((v[mid]<= v[l] && v[l] <= v[r]) || (v[r]<= v[l] && v[l] <= v[mid]))
+        pivot = l;
+    if((v[l]<= v[r] && v[r] <= v[mid]) || (v[mid]<= v[r] && v[r] <= v[l]))
+        pivot = r;
+
+    swap(v[pivot], v[r]); //punem pe ultima pozitie ca sa putem aplica acelasi cod ca la primul quicksort
+}
+
+int partitie_m(vector<int> &v, int l, int r)
+{
+    mediana(v, l, r);
+    int pivot = v[r];
+    int i, poz = l - 1;
+
+    for (i = l; i <= r; i++)
+        if (v[i] < pivot) {
+            poz++;
+            swap(v[i], v[poz]);
+        }
+
+    swap(v[poz + 1], v[r]);
+    return poz + 1;
+}
+
+void QuickSort_pivot_mediana(vector<int> &v, int l, int r)
+{
+    if(l<r)
+    {
+        int p = partitie_m(v, l, r);
+        QuickSort_pivot_mediana(v, l, p-1);
+        QuickSort_pivot_mediana(v, p+1, r);
+    }
+}
+
+//other stuff
 void afisare(vector<int> v, int n)
 {
     int i;
-    cout<<endl<<"Vectorul initial "<<endl;
+    //g<<endl<<"Vectorul initial "<<endl;
     for( i=0 ; i<n ; i++)
-        cout<<v[i]<<" ";
-    cout<<endl;
+        g<<v[i]<<" ";
+    g<<endl;
 }
 
-bool verificare(vector<int> v, int n)
+bool verificare(vector<int> v, vector<int> sortat, int n)
 {
     int i;
-    vector<int> copie = v;
    /* for( i=0 ; i<n ; i++)
-        cout<<v[i]<<" "; */
-    sort(copie.begin(), copie.end());
+        g<<v[i]<<" "; */
+    sort(v.begin(), v.end());
     for( i=0 ; i<n ; i++)
-        if( copie[i] != v[i] ) return 0;
+        if( sortat[i] != v[i] ) return 0;
 
     return 1;
 }
 
-int main() {
-    int n, m;
-    vector <int> v, bs, cs, rs;
-    v = teste( n, m );
+int main()
+{
+    int t;
+    f>>t;
+    while(t--)
+    {
+        int n, m, o;
+        f>>n>>m>>o;
+        vector <int> v, bs, cs, rs, ms, qsu, qsm;
+        if(o==1)v = teste( n, m );
+        else if(o==2)v = teste_descrescator( n, m );
+            else if(o==3) v = teste_crescator( n, m );
 
-    /*cout << n << '\n';
-    for( int i = 0; i < n; ++i )
-        cout << v[i] << ' ';
-    cout << '\n';*/
+        for( int i = 0; i < n; ++i )
+        {ms.push_back(v[i]); qsu.push_back(v[i]); qsm.push_back(v[i]); }
 
-    cout<<"n = "<<n<<endl<<"m = "<<m<<endl;
+        g<<"n = "<<n<<endl<<"m = "<<m<<endl;
 
-    cout<<"Bubble sort: ";
-    auto start = chrono::high_resolution_clock::now();
-    bs = BubbleSort(v, n);
-    auto stop = chrono::high_resolution_clock::now();
-    auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
-    cout << duration.count() / 1000 << "ms\n";
-    if(bs[0] == -55) cout<<"Sortarea a fost oprita dupa 2 minute.";
-    else if( verificare(bs, n) == 1) cout<<"Vectorul a fost sortat corect.";
-        else cout<<"Vectorul a fost sortat gresit.";
+        g<<"Sortarea din c++: ";
+        vector <int> sortat= v;
+        auto start = chrono::high_resolution_clock::now();
+        sort( sortat.begin(), sortat.end() );
+        auto stop = chrono::high_resolution_clock::now();
+        auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
+        g << duration.count() / 1000 << "ms\n";
 
-    cout<<endl<<"Counting sort: ";
-    start = chrono::high_resolution_clock::now();
-    cs = CountingSort(v, n, m);
-    stop = chrono::high_resolution_clock::now();
-    duration = chrono::duration_cast<chrono::microseconds>(stop - start);
-    cout << duration.count() / 1000 << "ms\n";
-    if( verificare(cs, n) == 1) cout<<"Vectorul a fost sortat corect.";
-    else cout<<"Vectorul a fost sortat gresit.";
+        g<<"Counting sort: ";
+        start = chrono::high_resolution_clock::now();
+        cs = CountingSort(v, n, m);
+        stop = chrono::high_resolution_clock::now();
+        duration = chrono::duration_cast<chrono::microseconds>(stop - start);
+        g << duration.count() / 1000 << "ms\n";
+        if( verificare(v, cs, n) == 1) g<<"Vectorul a fost sortat corect.";
+        else g<<"Vectorul a fost sortat gresit.";
+        //afisare(cs, n);
 
-    cout<<endl<<"Radix sort: ";
-    start = chrono::high_resolution_clock::now();
-    rs = RadixSort(v, n);
-    stop = chrono::high_resolution_clock::now();
-    duration = chrono::duration_cast<chrono::microseconds>(stop - start);
-    cout << duration.count() / 1000 << "ms\n";
-    if( verificare(cs, n) == 1) cout<<"Vectorul a fost sortat corect.";
-    else cout<<"Vectorul a fost sortat gresit.";
-    //afisare(v, n);
+        g<<endl<<"Radix sort: ";
+        start = chrono::high_resolution_clock::now();
+        rs = RadixSort(v, n);
+        stop = chrono::high_resolution_clock::now();
+        duration = chrono::duration_cast<chrono::microseconds>(stop - start);
+        g << duration.count() / 1000 << "ms\n";
+        if( verificare(v, cs, n) == 1) g<<"Vectorul a fost sortat corect.";
+        else g<<"Vectorul a fost sortat gresit.";
+        //afisare(rs, n);
+
+        g<<endl<<"Merge sort: ";
+        if(n>500000) g<<"prea multe numere, risc de stack overflow"<<endl;
+        else{
+            start = chrono::high_resolution_clock::now();
+            MergeSort(ms,0, n-1);
+            stop = chrono::high_resolution_clock::now();
+            duration = chrono::duration_cast<chrono::microseconds>(stop - start);
+            g << duration.count() / 1000 << "ms\n";
+            if( verificare(v, ms, n) == 1) g<<"Vectorul a fost sortat corect.";
+            else g<<"Vectorul a fost sortat gresit.";
+            g<<endl;
+            //afisare(ms, n);
+        }
+
+        g<<"Quick sort cu pivot pe ultimul element: ";
+        start = chrono::high_resolution_clock::now();
+        QuickSort_pivot_ultimul(qsu,0, n-1);
+        stop = chrono::high_resolution_clock::now();
+        duration = chrono::duration_cast<chrono::microseconds>(stop - start);
+        g << duration.count() / 1000 << "ms\n";
+        if( verificare(v, qsu, n) == 1) g<<"Vectorul a fost sortat corect.";
+        else g<<"Vectorul a fost sortat gresit.";
+        //afisare(qsu, n);
+
+        g<<endl<<"Quick sort cu pivot din mediana de 3: ";
+        start = chrono::high_resolution_clock::now();
+        QuickSort_pivot_mediana(qsm,0, n-1);
+        stop = chrono::high_resolution_clock::now();
+        duration = chrono::duration_cast<chrono::microseconds>(stop - start);
+        g << duration.count() / 1000 << "ms\n";
+        if( verificare(v, qsm, n) == 1) g<<"Vectorul a fost sortat corect.";
+        else g<<"Vectorul a fost sortat gresit.";
+        //afisare(qsm, n);
+
+        g<<endl<<"Bubble sort: ";
+        start = chrono::high_resolution_clock::now();
+        bs = BubbleSort(v, n);
+        stop = chrono::high_resolution_clock::now();
+        duration = chrono::duration_cast<chrono::microseconds>(stop - start);
+        g << duration.count() / 1000 << "ms\n";
+        if(bs[0] == -55) g<<"Sortarea a fost oprita dupa 1 minut.";
+        else if( verificare(v, bs, n) == 1) g<<"Vectorul a fost sortat corect.";
+        else g<<"Vectorul a fost sortat gresit.";
+        g<<endl<<endl;
+        //afisare(bs, n);
+        //afisare(v, n);
+    }
+
     return 0;
 }
