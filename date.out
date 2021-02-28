@@ -1,0 +1,32 @@
+n = 100000
+m = 100000
+Sortarea din c++: 44ms
+Counting sort: 4ms
+Vectorul a fost sortat corect.
+Radix sort: 32ms
+Vectorul a fost sortat corect.
+Merge sort: 31ms
+Vectorul a fost sortat corect.
+Quick sort cu pivot pe ultimul element: 36ms
+Vectorul a fost sortat corect.
+Quick sort cu pivot din mediana de 3: 39ms
+Vectorul a fost sortat corect.
+Bubble sort: 60006ms
+Sortarea a fost oprita dupa 1 minut.
+
+n = 1000
+m = 100000
+Sortarea din c++: 0ms
+Counting sort: 0ms
+Vectorul a fost sortat corect.
+Radix sort: 0ms
+Vectorul a fost sortat corect.
+Merge sort: 0ms
+Vectorul a fost sortat corect.
+Quick sort cu pivot pe ultimul element: 11ms
+Vectorul a fost sortat corect.
+Quick sort cu pivot din mediana de 3: 0ms
+Vectorul a fost sortat corect.
+Bubble sort: 28ms
+Vectorul a fost sortat corect.
+
