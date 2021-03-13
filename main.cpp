@@ -25,12 +25,8 @@ vector<int> teste_descrescator( int &n, int &m)
     int i;
     vector<int> v;
     srand( time(0));
-
-    //n = rand() % 10000000 + 1; // genereaza numarul de numere
-    //n=10000;
-    //m=1000000;
     for( i=0 ; i<n ; i++)
-        v.push_back( rand() %m ); //genereaza numere mai mici ca 10^4
+        v.push_back( rand() %m ); 
     sort(v.begin(), v.end(), greater<int>());
     return v;
 }
@@ -40,12 +36,8 @@ vector<int> teste_crescator( int &n, int &m)
     int i;
     vector<int> v;
     srand( time(0));
-
-    //n = rand() % 10000000 + 1; // genereaza numarul de numere
-    //n=10000;
-    //m=1000000;
     for( i=0 ; i<n ; i++)
-        v.push_back( rand() %m ); //genereaza numere mai mici ca 10^4
+        v.push_back( rand() %m );
     sort(v.begin(), v.end());
     return v;
 }
