@@ -1,0 +1,12 @@
+Merge Sort are risc de stack overflow cand sunt mai mult de 5*10^5 numere.
+
+Counting Sort este rapid pe majoritatea cazurilor, dar atunci cand M(numarul maxim) este foarte mare devine foarte lent + utilizeaza multa memorie. (exemplu N= 10^4, M= 10^8)
+
+Quick Sort este mai incet pe testele aproape sortate/complet sortate.
+	- de la 10^7 numere in sus incepe sa fie mai incet (foarte incet pe exemplul N= 10^7 si M= 10^3, numarul maxim fiind mai mic=> sansele de a fi intr-o ordine sortata sunt mai mari)
+	- Cand vectorul este deja sortat(crescator/descrescator) si N>10000 am oprit Quick Sortul cu pivot pe ultimul element.
+	- Cand vectorul este deja sortat(crescator/descrescator si N>10000000 am oprit Quick Sortul cu pivot din mediana de 3.
+
+Bubble Sort-ul este foarte incet si la teste de N= 10^3 si M=10^3, fapt pentru care l-am oprit dupa 30 de secunde.
+
+Am testat la fiecare daca vectorul a fost sortat corect (in cazul in care nu am oprit sortarea), se afiseaza un mesaj numai daca vectorul a fost sortat gresit.
